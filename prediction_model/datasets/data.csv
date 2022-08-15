@@ -1,5 +1,5 @@
 sentence,label
-I did well today ,SENTENCE
+I did well today,SENTENCE
 Life is not daijoubu,SENTENCE
 I am happy,SENTENCE
 I am tired,SENTENCE
@@ -22,10 +22,10 @@ I love my family,SENTENCE
 daydreaming is my favorite pastime,SENTENCE
 We are now in the third world war,SENTENCE
 I like asian food,SENTENCE
-I like playing guitar ,SENTENCE
+I like playing guitar,SENTENCE
 Lets go cycling.,SENTENCE
 I like to eat Nasi Lemak,SENTENCE
-Malaysia independent ,SENTENCE
+Malaysia independent,SENTENCE
 Music,SENTENCE
 How do I tie a magic knot,QUESTION
 What is the purpose of life?,QUESTION
@@ -44,13 +44,13 @@ Where to hike in Kelantan?,QUESTION
 Best place to chill?,QUESTION
 Where should i go for vacation?,QUESTION
 What exercise should I do next ?,QUESTION
-How are you? ,QUESTION
+How are you?,QUESTION
 How do I jump rope?,QUESTION
 How to hydrate my face?,QUESTION
 how long do penguins live,QUESTION
 What is the next stage of the Ukraine conflict?,QUESTION
 Where is the nearest cafe?,QUESTION
-Best smart watch ,QUESTION
+Best smart watch,QUESTION
 WhIch cycle route should I take in Kuala Lumpur?,QUESTION
 What is the weather in Kuala Lumpur today?,QUESTION
 What is your plan today?,QUESTION
