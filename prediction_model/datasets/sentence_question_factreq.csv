@@ -1,0 +1,85 @@
+sentence,label
+I did well today ,SENTENCE
+Life is not daijoubu,SENTENCE
+I am happy,SENTENCE
+I am tired,SENTENCE
+food,SENTENCE
+You will never walk alone.,SENTENCE
+I love cycling,SENTENCE
+i want to die,SENTENCE
+I am married,SENTENCE
+I love Liverpool Football Club,SENTENCE
+i'm liverpool supporter,SENTENCE
+I'm a passionate runner,SENTENCE
+I love to cycle,SENTENCE
+I am sleepy.,SENTENCE
+The star is born.,SENTENCE
+I like nasi lemak ayam berempah,SENTENCE
+I like exercising,SENTENCE
+My name is joe,SENTENCE
+I like exercise,SENTENCE
+I love my family,SENTENCE
+daydreaming is my favorite pastime,SENTENCE
+We are now in the third world war,SENTENCE
+I like asian food,SENTENCE
+I like playing guitar ,SENTENCE
+Lets go cycling.,SENTENCE
+I like to eat Nasi Lemak,SENTENCE
+Malaysia independent ,SENTENCE
+Music,SENTENCE
+How do I tie a magic knot,QUESTION
+What is the purpose of life?,QUESTION
+How to sleep,QUESTION
+How to change people?,QUESTION
+best food to eat in sunway,QUESTION
+Liverpool fc,QUESTION
+What is the best bike,QUESTION
+how would i find happiness?,QUESTION
+Who are you?,QUESTION
+What is the time in London?,QUESTION
+when will be the PRU15,QUESTION
+What's the best nasi ayam?,QUESTION
+Top endurance bikes,QUESTION
+Where to hike in Kelantan?,QUESTION
+Best place to chill?,QUESTION
+Where should i go for vacation?,QUESTION
+What exercise should I do next ?,QUESTION
+How are you? ,QUESTION
+How do I jump rope?,QUESTION
+How to hydrate my face?,QUESTION
+how long do penguins live,QUESTION
+What is the next stage of the Ukraine conflict?,QUESTION
+Where is the nearest cafe?,QUESTION
+Best smart watch ,QUESTION
+WhIch cycle route should I take in Kuala Lumpur?,QUESTION
+What is the weather in Kuala Lumpur today?,QUESTION
+What is your plan today?,QUESTION
+Healthy,QUESTION
+Gimme a fun fact,FACTREQ
+can i have a fact please,FACTREQ
+whats the fun fact of the day?,FACTREQ
+"hey, gimme fact",FACTREQ
+"hey, what's a random fact",FACTREQ
+fact. now.,FACTREQ
+can you provide an interesting fact,FACTREQ
+can i have a fact please,FACTREQ
+random fact,FACTREQ
+what fact can i have?,FACTREQ
+may i know a fact,FACTREQ
+Tell me about something,FACTREQ
+give me something random,FACTREQ
+I want to know about something,FACTREQ
+Fact about something random please,FACTREQ
+I want a fact on somethings,FACTREQ
+What's something you can share with me?,FACTREQ
+give fact,FACTREQ
+"Hey, tell me something random",FACTREQ
+i want random information,FACTREQ
+hey give me a random fact,FACTREQ
+may i know something from you,FACTREQ
+fact,FACTREQ
+what's your favorite fact,FACTREQ
+Just type the keyword of the fact,FACTREQ
+"Hey Google, tell me something",FACTREQ
+fact please,FACTREQ
+give me a fun fact,FACTREQ
