@@ -1,5 +1,5 @@
 sentence,label
-I did well today,SENTENCE
+I did well today ,SENTENCE
 Life is not daijoubu,SENTENCE
 I am happy,SENTENCE
 I am tired,SENTENCE
@@ -22,11 +22,44 @@ I love my family,SENTENCE
 daydreaming is my favorite pastime,SENTENCE
 We are now in the third world war,SENTENCE
 I like asian food,SENTENCE
-I like playing guitar,SENTENCE
+I like playing guitar ,SENTENCE
 Lets go cycling.,SENTENCE
 I like to eat Nasi Lemak,SENTENCE
-Malaysia independent,SENTENCE
+Malaysia independent ,SENTENCE
 Music,SENTENCE
+I love to travel ,SENTENCE
+I love cycling,SENTENCE
+I am a doctor,SENTENCE
+I like coffee,SENTENCE
+I am a mother,SENTENCE
+I love myself,SENTENCE
+I like to travel,SENTENCE
+Keep on cycling,SENTENCE
+Nasi lemak is the best,SENTENCE
+Car,SENTENCE
+Time is gold,SENTENCE
+I like to cosplay.,SENTENCE
+Be happy,SENTENCE
+I love basketball,SENTENCE
+i like chicken rice,SENTENCE
+i like bikes,SENTENCE
+I am tired. ,SENTENCE
+Amir is my friend,SENTENCE
+I love bak kut teh,SENTENCE
+"Hi, how are you?",SENTENCE
+I eat rice,SENTENCE
+Yo it's been a while ,SENTENCE
+I like running,SENTENCE
+I like healthy foods.,SENTENCE
+I love to run,SENTENCE
+I am a chelsea fans,SENTENCE
+To the moon,SENTENCE
+I like deez ,SENTENCE
+i love holiday,SENTENCE
+Run for your life ,SENTENCE
+I like strawberry 🍓,SENTENCE
+I love my job,SENTENCE
+We are Malaysians ,SENTENCE
 How do I tie a magic knot,QUESTION
 What is the purpose of life?,QUESTION
 How to sleep,QUESTION
@@ -44,42 +77,108 @@ Where to hike in Kelantan?,QUESTION
 Best place to chill?,QUESTION
 Where should i go for vacation?,QUESTION
 What exercise should I do next ?,QUESTION
-How are you?,QUESTION
+How are you? ,QUESTION
 How do I jump rope?,QUESTION
 How to hydrate my face?,QUESTION
 how long do penguins live,QUESTION
 What is the next stage of the Ukraine conflict?,QUESTION
 Where is the nearest cafe?,QUESTION
-Best smart watch,QUESTION
+Best smart watch ,QUESTION
 WhIch cycle route should I take in Kuala Lumpur?,QUESTION
 What is the weather in Kuala Lumpur today?,QUESTION
 What is your plan today?,QUESTION
 Healthy,QUESTION
-Gimme a fun fact,FACTREQ
-can i have a fact please,FACTREQ
-whats the fun fact of the day?,FACTREQ
-"hey, gimme fact",FACTREQ
+Where to stay?,QUESTION
+Where is the best wagyu in KL,QUESTION
+Where can i work ,QUESTION
+What should I drink ,QUESTION
+Where is the best nasi lemak in Shah Alam?,QUESTION
+How are you?,QUESTION
+restaurant near me,QUESTION
+Where should I cycle next?,QUESTION
+what time in italy now,QUESTION
+what car should i drive?,QUESTION
+Where to eat,QUESTION
+who invented the Mark I?,QUESTION
+Best breakfast place,QUESTION
+What is my favorite NBA team?,QUESTION
+when it will rain?,QUESTION
+install dry clutch,QUESTION
+How to run faster?,QUESTION
+Nasi ayam near me,QUESTION
+Top restaurants near me,QUESTION
+Can I travel to New Zealand now?,QUESTION
+Where should i eat,QUESTION
+Do fish swim?,QUESTION
+How can i run faster?,QUESTION
+Is barley good for health?,QUESTION
+Where should i sleep?,QUESTION
+What should i worn?,QUESTION
+How to bake strudel,QUESTION
+whats deez?,QUESTION
+where to eat near me?,QUESTION
+Mosque near me ?,QUESTION
+Where to?,QUESTION
+What are the most profitable companies in Malaysia for 2022?,QUESTION
+What does norm means?,QUESTION
+Gimme a fun fact.,FACTREQ
+can i have a fact?,FACTREQ
+Do you know a fact?,FACTREQ
+Are you able to give me a fact?,FACTREQ
 "hey, what's a random fact",FACTREQ
-fact. now.,FACTREQ
-can you provide an interesting fact,FACTREQ
-can i have a fact please,FACTREQ
-random fact,FACTREQ
-what fact can i have?,FACTREQ
-may i know a fact,FACTREQ
-Tell me about something,FACTREQ
-give me something random,FACTREQ
-I want to know about something,FACTREQ
-Fact about something random please,FACTREQ
-I want a fact on somethings,FACTREQ
-What's something you can share with me?,FACTREQ
-give fact,FACTREQ
-"Hey, tell me something random",FACTREQ
-i want random information,FACTREQ
+What is today's fact,FACTREQ
+Can you try to give me a fun fact?,FACTREQ
+can i have a fact please?,FACTREQ
+can you give me some random information?,FACTREQ
+what is a fun fact?,FACTREQ
+give me some information for fun.,FACTREQ
+Tell me about something random.,FACTREQ
+fact.,FACTREQ
+I want to know something random.,FACTREQ
+Fact about something?,FACTREQ
+I want a fact on something?,FACTREQ
+What a new fact can you share with me?,FACTREQ
+I got a hunger for facts,FACTREQ
+"Hey, tell me a fact",FACTREQ
+I need a fact,FACTREQ
 hey give me a random fact,FACTREQ
-may i know something from you,FACTREQ
-fact,FACTREQ
-what's your favorite fact,FACTREQ
-Just type the keyword of the fact,FACTREQ
-"Hey Google, tell me something",FACTREQ
-fact please,FACTREQ
-give me a fun fact,FACTREQ
+What is the fact of the day,FACTREQ
+fact now!,FACTREQ
+What's the fact of the day?,FACTREQ
+give me a fact,FACTREQ
+"Hey, tell me something",FACTREQ
+i want a fact from you,FACTREQ
+factoid,FACTREQ
+Hotels nearby,QUESTION
+What is the best stadium,QUESTION
+Who built the empire state building,QUESTION
+Can I get a random fact from you?,FACTREQ
+Facts of the internet,FACTREQ
+Give me a fact,FACTREQ
+can you tell me something,FACTREQ
+Please provide the fact. ,FACTREQ
+time italy,QUESTION
+"Yo, is that a right car for me?",QUESTION
+I talk based on experience,SENTENCE
+Heeeeey~ give me a random fact please ;),FACTREQ
+EPL result,QUESTION
+Which is best NBA team all time?,QUESTION
+what is a tree,QUESTION
+give me a fact,FACTREQ
+When is the next public holiday?,QUESTION
+Random fact,FACTREQ
+List of random facts,FACTREQ
+Best way to take care of fig tree,QUESTION
+Please tell me,FACTREQ
+"Hey man, give me a random fact",FACTREQ
+Where is Tarragona?,QUESTION
+What is the most nutritious food to eat?,QUESTION
+"Hey siri, i need a fact",FACTREQ
+Hey bro..whats up?,QUESTION
+"Hey google, what does beaver eat?",QUESTION
+harry osborne actor,QUESTION
+How big is Qatar?,QUESTION
+"To run fast, run slow",SENTENCE
+Fact please,FACTREQ
+Successful companies in Malaysia this year ,QUESTION
+How to check car battery?,QUESTION

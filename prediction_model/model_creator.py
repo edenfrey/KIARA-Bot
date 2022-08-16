@@ -17,6 +17,7 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 # Importing Data Set
 df = pd.read_csv('prediction_model/datasets/data.csv')
 
+# Creating taget column -> COnverting label to integers
 target = {'SENTENCE':0,'QUESTION':1,'FACTREQ':2}
 df['target']=df['label'].map(target)
 x , y = df["sentence"],df["target"]
@@ -69,6 +70,7 @@ classifier.fit(x_train, y_train)
 
 # Test Model
 y_pred = classifier.predict(x_test)
+
 print(confusion_matrix(y_test,y_pred))
 print(classification_report(y_test,y_pred))
 print(accuracy_score(y_test, y_pred))
