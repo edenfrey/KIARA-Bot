@@ -5,6 +5,8 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.linear_model import LogisticRegression
 
+
+"""
     # Keras Modeling
 from keras.models import Sequential
 from keras import layers
@@ -13,6 +15,10 @@ from keras.preprocessing.text import Tokenizer
 from keras_preprocessing.sequence import pad_sequences
 from keras.models import Sequential
 from keras import layers
+"""
+
+# Save model
+import pickle
 
 
 # Importing Data Set
@@ -21,6 +27,7 @@ df = pd.read_csv('prediction_model/datasets/data.csv')
 # Converting labeled data to targets
 lb_make = LabelEncoder()
 df["target"] = lb_make.fit_transform(df["label"])
+print(df)
 
 # Baseline Model
 sentences = df['sentence'].values
@@ -42,6 +49,8 @@ classifier.fit(X_train, y_train)
 score = classifier.score(X_test, y_test)
 print("Accuracy:", score)
 
+
+"""
 # Keras Model
 input_dim = X_train.shape[1]  # Number of features
 
@@ -99,3 +108,14 @@ loss, accuracy = model.evaluate(X_train, y_train, verbose=False)
 print("Training Accuracy: {:.4f}".format(accuracy))
 loss, accuracy = model.evaluate(X_test, y_test, verbose=False)
 print("Testing Accuracy:  {:.4f}".format(accuracy))
+"""
+
+
+
+# Saving Model
+filename = 'prediction_model/final_model/text_classifier.sav'
+pickle.dump(classifier, open(filename, 'wb'))
+
+# Saving Something
+filename = 'prediction_model/final_model/text_vectorizer.sav'
+pickle.dump(vectorizer, open(filename, 'wb'))
