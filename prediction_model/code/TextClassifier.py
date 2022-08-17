@@ -1,5 +1,6 @@
 import pickle
-import pandas as pd
+import re
+from nltk.stem import WordNetLemmatizer
 from sklearn.preprocessing import LabelEncoder
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
@@ -12,6 +13,9 @@ class TextClassifier(object):
 
         filename = 'prediction_model/final_model/text_vectorizer.sav'
         self.vectorizer = pickle.load(open(filename, 'rb'))
+
+        filename = 'prediction_model/final_model/text_tfidfconverter.sav'
+        self.tfidfconverter = pickle.load(open(filename, 'rb'))
 
         self.labels = ('FACTREQ','QUESTION','SENTENCE')
     
@@ -26,7 +30,40 @@ class TextClassifier(object):
 
 
     def pre_processing(self, input):
-        return self.vectorizer.transform(input)
+        # Text Pre-Processing
+        documents = []
+
+        stemmer = WordNetLemmatizer()
+
+        for sen in range(0, len(input)):
+            # Remove all the special characters
+            document = re.sub(r'\W', ' ', str(input[sen]))
+            
+            # remove all single characters
+            document = re.sub(r'\s+[a-zA-Z]\s+', ' ', document)
+            
+            # Remove single characters from the start
+            document = re.sub(r'\^[a-zA-Z]\s+', ' ', document) 
+            
+            # Substituting multiple spaces with single space
+            document = re.sub(r'\s+', ' ', document, flags=re.I)
+            
+            # Removing prefixed 'b'
+            document = re.sub(r'^b\s+', '', document)
+            
+            # Converting to Lowercase
+            document = document.lower()
+            
+            # Lemmatization
+            document = document.split()
+
+            document = [stemmer.lemmatize(word) for word in document]
+            document = ' '.join(document)
+            
+            documents.append(document)
+        
+        res = self.vectorizer.fit_transform(documents).toarray()
+        return self.tfidfconverter.fit_transform(res).toarray()
 
 if __name__ == "__main__":
     classifier = TextClassifier()

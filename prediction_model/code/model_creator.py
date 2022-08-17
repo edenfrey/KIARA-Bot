@@ -1,24 +1,20 @@
 # Import Libraries
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import CountVectorizer
-from sklearn.linear_model import LogisticRegression
-
-
-"""
-    # Keras Modeling
-from keras.models import Sequential
-from keras import layers
-from keras.backend import clear_session
-from keras.preprocessing.text import Tokenizer
-from keras_preprocessing.sequence import pad_sequences
-from keras.models import Sequential
-from keras import layers
-"""
-
-# Save model
+import numpy as np
+import re
+import nltk
+from sklearn.datasets import load_files
+nltk.download('stopwords')
+from nltk.stem import WordNetLemmatizer
 import pickle
+from nltk.corpus import stopwords
+
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.model_selection import train_test_split
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
 
 
 # Importing Data Set
@@ -33,89 +29,69 @@ print(df)
 sentences = df['sentence'].values
 y = df['target'].values
 
-sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y, test_size=0.20, random_state=1000) # Split Data
-
-    # Vectorization of X data
-vectorizer = CountVectorizer() 
-vectorizer.fit(sentences_train)
-X_train = vectorizer.transform(sentences_train)
-X_test  = vectorizer.transform(sentences_test)
-
-    # Creating Model
-classifier = LogisticRegression()
-classifier.fit(X_train, y_train)
-
-    # Testing Model
-score = classifier.score(X_test, y_test)
-print("Accuracy:", score)
-
-
-"""
-# Keras Model
-input_dim = X_train.shape[1]  # Number of features
-
-model = Sequential()
-model.add(layers.Dense(10, input_dim=input_dim, activation='relu'))
-model.add(layers.Dense(1, activation='sigmoid'))
-
-model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy'])
-model.summary()
-
-clear_session() # Clear Previous Session
-history = model.fit(X_train, y_train,epochs=100,verbose=False,validation_data=(X_test, y_test),batch_size=10)
-
-loss, accuracy = model.evaluate(X_train, y_train, verbose=False)
-print("Training Accuracy: {:.4f}".format(accuracy))
-loss, accuracy = model.evaluate(X_test, y_test, verbose=False)
-print("Testing Accuracy:  {:.4f}".format(accuracy))
-
 # Text Pre-Processing
-tokenizer = Tokenizer(num_words=5000)
-tokenizer.fit_on_texts(sentences_train)
+documents = []
 
-X_train = tokenizer.texts_to_sequences(sentences_train)
-X_test = tokenizer.texts_to_sequences(sentences_test)
+stemmer = WordNetLemmatizer()
 
-vocab_size = len(tokenizer.word_index) + 1  # Adding 1 because of reserved 0 index
+for sen in range(0, len(sentences)):
+    # Remove all the special characters
+    document = re.sub(r'\W', ' ', str(sentences[sen]))
+    
+    # remove all single characters
+    document = re.sub(r'\s+[a-zA-Z]\s+', ' ', document)
+    
+    # Remove single characters from the start
+    document = re.sub(r'\^[a-zA-Z]\s+', ' ', document) 
+    
+    # Substituting multiple spaces with single space
+    document = re.sub(r'\s+', ' ', document, flags=re.I)
+    
+    # Removing prefixed 'b'
+    document = re.sub(r'^b\s+', '', document)
+    
+    # Converting to Lowercase
+    document = document.lower()
+    
+    # Lemmatization
+    document = document.split()
 
-maxlen = 100
+    document = [stemmer.lemmatize(word) for word in document]
+    document = ' '.join(document)
+    
+    documents.append(document)
 
-X_train = pad_sequences(X_train, padding='post', maxlen=maxlen)
-X_test = pad_sequences(X_test, padding='post', maxlen=maxlen)
+# Create vectorizer
+vectorizer = CountVectorizer(max_features=1500, stop_words=stopwords.words('english'))
+sentences = vectorizer.fit_transform(documents).toarray()
 
-# Modelling
-embedding_dim = 50
+# Bag of Words Model - Convert Values
+tfidfconverter = TfidfTransformer()
+sentences = tfidfconverter.fit_transform(sentences).toarray()
 
-model = Sequential()
-model.add(layers.Embedding(input_dim=vocab_size, 
-                           output_dim=embedding_dim, 
-                           input_length=maxlen))
-model.add(layers.GlobalMaxPool1D())
-model.add(layers.Dense(10, activation='relu'))
-model.add(layers.Dense(1, activation='sigmoid'))
-model.compile(optimizer='adam',
-              loss='binary_crossentropy',
-              metrics=['accuracy'])
-model.summary()
+# Splitting Data Set
+sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y, test_size=0.2, random_state=0)
 
-# Testing
-history = model.fit(X_train, y_train,
-                    epochs=50,
-                    verbose=False,
-                    validation_data=(X_test, y_test),
-                    batch_size=10)
-loss, accuracy = model.evaluate(X_train, y_train, verbose=False)
-print("Training Accuracy: {:.4f}".format(accuracy))
-loss, accuracy = model.evaluate(X_test, y_test, verbose=False)
-print("Testing Accuracy:  {:.4f}".format(accuracy))
-"""
+# Training Model
+classifier = RandomForestClassifier(n_estimators=1000, random_state=0)
+classifier.fit(sentences_train, y_train) 
 
+# Testing Model
+y_pred = classifier.predict(sentences_test)
 
+# Evaluating Results
+print(confusion_matrix(y_test,y_pred))
+print(classification_report(y_test,y_pred))
+print(accuracy_score(y_test, y_pred))
 
 # Saving Model
 filename = 'prediction_model/final_model/text_classifier.sav'
 pickle.dump(classifier, open(filename, 'wb'))
 
-# Saving Something
+# Saving Vectorizer
 filename = 'prediction_model/final_model/text_vectorizer.sav'
 pickle.dump(vectorizer, open(filename, 'wb'))
+
+# Saving TFIDF Converter
+filename = 'prediction_model/final_model/text_tfidfconverter.sav'
+pickle.dump(tfidfconverter, open(filename, 'wb'))
