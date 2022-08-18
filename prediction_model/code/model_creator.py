@@ -1,11 +1,8 @@
 # Import Libraries
-from pydoc import doc
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
-import numpy as np
 import re
 import nltk
-from sklearn.datasets import load_files
 nltk.download('stopwords')
 from nltk.stem import WordNetLemmatizer
 import pickle
@@ -24,7 +21,6 @@ df = pd.read_csv('prediction_model/datasets/data.csv')
 # Converting labeled data to targets
 lb_make = LabelEncoder()
 df["target"] = lb_make.fit_transform(df["label"])
-print(df)
 
 # Baseline Model
 sentences = df['sentence'].values
