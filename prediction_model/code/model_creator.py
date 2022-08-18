@@ -17,7 +17,6 @@ from sklearn.preprocessing import LabelEncoder
 
 nltk.download("stopwords")
 
-
 # Importing Data Set
 df = pd.read_csv("prediction_model/datasets/data.csv")
 
@@ -62,7 +61,8 @@ for sen in range(0, len(sentences)):
     documents.append(document)
 
 # Create vectorizer
-vectorizer = CountVectorizer(max_features=1500, stop_words=stopwords.words("english"))
+vectorizer = CountVectorizer(max_features=1500,
+                             stop_words=stopwords.words("english"))
 vectorizer.fit(documents)
 sentences = vectorizer.transform(documents)
 
@@ -73,8 +73,7 @@ sentences = tfidfconverter.transform(sentences)
 
 # Splitting Data Set
 sentences_train, sentences_test, y_train, y_test = train_test_split(
-    sentences, y, test_size=0.2, random_state=0
-)
+    sentences, y, test_size=0.2, random_state=0)
 
 # Training Model
 classifier = RandomForestClassifier(n_estimators=1000, random_state=0)
