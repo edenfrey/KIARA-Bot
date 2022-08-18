@@ -30,6 +30,12 @@ class TextClassifier(object):
 
 
     def pre_processing(self, input):
+        input = self.text_pre_processing(input)
+        input = self.vectorizer.transform(input)
+        input = self.tfidfconverter.transform(input)
+        return input
+
+    def text_pre_processing(self, input):
         # Text Pre-Processing
         documents = []
 
@@ -62,10 +68,11 @@ class TextClassifier(object):
             
             documents.append(document)
         
-        res = self.vectorizer.fit_transform(documents).toarray()
-        return self.tfidfconverter.fit_transform(res).toarray()
+        input = documents
+
+        return input
 
 if __name__ == "__main__":
     classifier = TextClassifier()
-    input = "a potato is best roasted"
+    input = "gimme FACT!"
     classifier.predict(input)

@@ -1,4 +1,5 @@
 # Import Libraries
+from pydoc import doc
 import pandas as pd
 from sklearn.preprocessing import LabelEncoder
 import numpy as np
@@ -63,11 +64,13 @@ for sen in range(0, len(sentences)):
 
 # Create vectorizer
 vectorizer = CountVectorizer(max_features=1500, stop_words=stopwords.words('english'))
-sentences = vectorizer.fit_transform(documents).toarray()
+vectorizer.fit(documents)
+sentences = vectorizer.transform(documents)
 
 # Bag of Words Model - Convert Values
 tfidfconverter = TfidfTransformer()
-sentences = tfidfconverter.fit_transform(sentences).toarray()
+tfidfconverter.fit(sentences)
+sentences = tfidfconverter.transform(sentences)
 
 # Splitting Data Set
 sentences_train, sentences_test, y_train, y_test = train_test_split(sentences, y, test_size=0.2, random_state=0)
