@@ -1,6 +1,10 @@
 import pickle
 import re
-from typing import Dict, List, Optional, Set, Tuple
+from typing import Dict
+from typing import List
+from typing import Optional
+from typing import Set
+from typing import Tuple
 
 import numpy
 from nltk.stem import WordNetLemmatizer
