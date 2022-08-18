@@ -1,16 +1,17 @@
 # Import Libraries
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.feature_extraction.text import TfidfTransformer
-from sklearn.feature_extraction.text import CountVectorizer
-from nltk.corpus import stopwords
 import pickle
-from nltk.stem import WordNetLemmatizer
-import pandas as pd
-from sklearn.preprocessing import LabelEncoder
 import re
+
 import nltk
+import pandas as pd
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
+from sklearn.ensemble import RandomForestClassifier
+from sklearn.feature_extraction.text import CountVectorizer, TfidfTransformer
+from sklearn.metrics import (accuracy_score, classification_report,
+                             confusion_matrix)
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import LabelEncoder
 
 nltk.download("stopwords")
 

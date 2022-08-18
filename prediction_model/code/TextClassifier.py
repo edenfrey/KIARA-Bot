@@ -1,8 +1,9 @@
 import pickle
 import re
-from nltk.stem import WordNetLemmatizer
+from typing import Dict, List, Optional, Set, Tuple
+
 import numpy
-from typing import List, Set, Dict, Tuple, Optional
+from nltk.stem import WordNetLemmatizer
 
 
 class TextClassifier(object):
