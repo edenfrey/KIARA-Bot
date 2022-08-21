@@ -1,27 +1,68 @@
+
+from ast import parse
 from prediction_model.code.TextClassifier import TextClassifier
 import os
 from dotenv import load_dotenv
 import hikari
-
+import lightbulb
+import requests
+import json
+from serpapi import GoogleSearch
 
 load_dotenv()
 text_classifier = TextClassifier()
-bot_token = os.getenv("DISCORD_BOT_TOKEN")
-bot = hikari.GatewayBot(token=bot_token)
+BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
+TEST_GUILD_ID = os.getenv("TEST_GUILD")
+BOT_ID = os.getenv("BOT_ID_STRING")
+RANDOM_FACTS_API = "https://uselessfacts.jsph.pl/random.json?language=en"
+TODAY_FACT_API = "https://uselessfacts.jsph.pl/today.json?language=en"
+SERP_API_KEY = os.getenv("SERP_API_KEY")
 
+# Instantiate Bot
+bot = lightbulb.BotApp(token=BOT_TOKEN)
 
-@bot.listen()
-async def ping(event: hikari.GuildMessageCreateEvent) -> None:
-    # If a non-bot user sends a message "hk.ping", respond with "Pong!"
-    # We check there is actually content first, if no message content exists,
-    # we would get `None' here.
+# Events
+@bot.listen(hikari.StartedEvent)
+async def on_started(event):
+    print("KIARA is Online")
+    return
+
+@bot.listen(hikari.GuildMessageCreateEvent)
+async def ping(event) -> None:
     if event.is_bot or not event.content:
         return
+    elif event.content.startswith(BOT_ID):
+        type = text_classifier.predict(event.content)
+        if type == "SENTENCE":
+            await event.message.respond("Cool! I can't really understand fully yet but I'm learning!")
+        elif type == "QUESTION":
+            QUERY = event.content.split(' ',1)[1]
+            JSON_LINK = "https://serpapi.com/search.json?engine=google&q=" + QUERY + "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key=55a2b61f675b1caa807900b22c685c47ad6f5c16e654504c4344431f3dd6d123"
+            response = requests.get(JSON_LINK)
+            data = response.text
+            parse_json = json.loads(data)
+            await event.message.respond("Here are some results i found :)")
+            for i in parse_json['organic_results']:
+                res = ""
+                TITLE = i['title']
+                LINK = i['link']
+                res = TITLE  + "\n" + LINK
+                await event.message.respond(res)
+        else:
+            response = requests.get(RANDOM_FACTS_API)
+            data = response.text
+            parse_json = json.loads(data)
+            fact = parse_json["text"]
+            src = parse_json['source_url']
+            res = fact + "\nSource: " + src
+            await event.message.respond(res)
 
-    if event.content.startswith("Kiara"):
-        text = "may i have a fact please"
-        pred = text_classifier.predict(text)
-        await event.message.respond(pred)
 
+# Commands
+@bot.command
+@lightbulb.command('ping','Replies Pong!')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ping(context):
+    await context.respond('Pong!')
 
 bot.run()
