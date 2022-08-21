@@ -1,1 +1,1 @@
-worker: python3 KIARA.py
+worker: python KIARA.py
