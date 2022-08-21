@@ -65,4 +65,22 @@ async def ping(event) -> None:
 async def ping(context):
     await context.respond('Pong!')
 
+@bot.command
+@lightbulb.command('Search','Search Test')
+@lightbulb.implements(lightbulb.SlashCommand)
+async def ping(context):
+    QUERY = "empire state building"
+    JSON_LINK = "https://serpapi.com/search.json?engine=google&q=" + QUERY + "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key=" + SERP_API_KEY
+    response = requests.get(JSON_LINK)
+    data = response.text
+    parse_json = json.loads(data)
+    await context.respond("Here are some results i found :)")
+    for i in parse_json['organic_results']:
+        res = ""
+        TITLE = i['title']
+        LINK = i['link']
+        res = TITLE  + "\n" + LINK
+        await context.respond(res)
+    await context.respond('Pong!')
+
 bot.run()
