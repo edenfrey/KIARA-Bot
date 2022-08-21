@@ -37,7 +37,7 @@ async def ping(event) -> None:
             await event.message.respond("Cool! I can't really understand fully yet but I'm learning!")
         elif type == "QUESTION":
             QUERY = event.content.split(' ',1)[1]
-            JSON_LINK = "https://serpapi.com/search.json?engine=google&q=" + QUERY + "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key=55a2b61f675b1caa807900b22c685c47ad6f5c16e654504c4344431f3dd6d123"
+            JSON_LINK = "https://serpapi.com/search.json?engine=google&q=" + QUERY + "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key=" + SERP_API_KEY
             response = requests.get(JSON_LINK)
             data = response.text
             parse_json = json.loads(data)
