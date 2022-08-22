@@ -1,5 +1,6 @@
 # Import necessary modules and libraries
 import os
+
 # Import self-made classifier model.
 from prediction_model.code.TextClassifier import TextClassifier
 from dotenv import load_dotenv  # To retrieve secret environment variables from .env
@@ -49,26 +50,32 @@ async def on_read_message(event) -> None:
     # If message starts with "@KIARA" mentioned, perform task.
     elif event.content.startswith(BOT_ID):
         # Remove name and perform classification
-        sentence = event.content.split(' ', 1)[1]
+        sentence = event.content.split(" ", 1)[1]
         type = text_classifier.predict(sentence)
 
         # If it is a simple sentence and statement, simply answer with pre-curated text.
         if type == "SENTENCE":
-            await event.message.respond("Cool! I can't really understand fully yet but I'm learning!")
+            await event.message.respond(
+                "Cool! I can't really understand fully yet but I'm learning!"
+            )
 
         # If it is a question, perform query to SerpAPI to perform google search. Give results.
         elif type == "QUESTION":
-            QUERY = event.content.split(' ', 1)[1]
-            JSON_LINK = "https://serpapi.com/search.json?engine=google&q=" + QUERY + \
-                "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key=" + SERP_API_KEY
+            QUERY = event.content.split(" ", 1)[1]
+            JSON_LINK = (
+                "https://serpapi.com/search.json?engine=google&q="
+                + QUERY
+                + "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key="
+                + SERP_API_KEY
+            )
             response = requests.get(JSON_LINK)
             data = response.text
             parse_json = json.loads(data)
             await event.message.respond("Here are some results i found :)")
-            for i in parse_json['organic_results']:
+            for i in parse_json["organic_results"]:
                 res = ""
-                TITLE = i['title']
-                LINK = i['link']
+                TITLE = i["title"]
+                LINK = i["link"]
                 res = TITLE + "\n" + LINK
                 await event.message.respond(res)
 
@@ -78,7 +85,7 @@ async def on_read_message(event) -> None:
             data = response.text
             parse_json = json.loads(data)
             fact = parse_json["text"]
-            src = parse_json['source_url']
+            src = parse_json["source_url"]
             res = fact + "\nSource: " + src
             await event.message.respond(res)
     else:
@@ -87,12 +94,13 @@ async def on_read_message(event) -> None:
 
 # Commands
 @bot.command
-@lightbulb.command('ping', 'Replies Pong!')
+@lightbulb.command("ping", "Replies Pong!")
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping(context):
     """
     Simple command. If "/ping" is called, reply with Pong!
     """
-    await context.respond('Pong!')
+    await context.respond("Pong!")
+
 
 bot.run()
