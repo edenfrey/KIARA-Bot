@@ -1,17 +1,17 @@
 # Import necessary modules and libraries
+import json  # For loading and reading requested data
 import os
-
-# Import self-made classifier model.
-from prediction_model.code.TextClassifier import TextClassifier
-from dotenv import load_dotenv  # To retrieve secret environment variables from .env
 
 # Discord Bot Modules
 import hikari
 import lightbulb
-
 # API Data Requesting and Processing
 import requests  # API requesting
-import json  # For loading and reading requested data
+from dotenv import \
+    load_dotenv  # To retrieve secret environment variables from .env
+
+# Import self-made classifier model.
+from prediction_model.code.TextClassifier import TextClassifier
 
 text_classifier = TextClassifier()  # Instantiate text classifier
 
