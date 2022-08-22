@@ -1,17 +1,18 @@
 # Import necessary modules and libraries
 import os
-from prediction_model.code.TextClassifier import TextClassifier # Import self-made classifier model.
-from dotenv import load_dotenv # To retrieve secret environment variables from .env
+# Import self-made classifier model.
+from prediction_model.code.TextClassifier import TextClassifier
+from dotenv import load_dotenv  # To retrieve secret environment variables from .env
 
 # Discord Bot Modules
 import hikari
 import lightbulb
 
 # API Data Requesting and Processing
-import requests # API requesting
-import json # For loading and reading requested data
+import requests  # API requesting
+import json  # For loading and reading requested data
 
-text_classifier = TextClassifier() # Instantiate text classifier
+text_classifier = TextClassifier()  # Instantiate text classifier
 
 # Retrieve Secret Environment Variables and Constants
 load_dotenv()
@@ -27,6 +28,8 @@ TODAY_FACT_API = "https://uselessfacts.jsph.pl/today.json?language=en"
 bot = lightbulb.BotApp(token=BOT_TOKEN)
 
 # Events
+
+
 @bot.listen(hikari.StartedEvent)
 async def on_started(event):
     """
@@ -35,16 +38,18 @@ async def on_started(event):
     print("KIARA is now online!")
     return
 
+
 @bot.listen(hikari.GuildMessageCreateEvent)
 async def on_read_message(event) -> None:
     """
     Reads all messages in guild and checks if KIARA is mentioned in the beginning. If it is, runs text classification and performs necessary task.
     """
-    if event.is_bot or not event.content: # If message from bot or no content, return.
+    if event.is_bot or not event.content:  # If message from bot or no content, return.
         return
-    elif event.content.startswith(BOT_ID): # If message starts with "@KIARA" mentioned, perform task.
+    # If message starts with "@KIARA" mentioned, perform task.
+    elif event.content.startswith(BOT_ID):
         # Remove name and perform classification
-        sentence = event.content.split(' ',1)[1] 
+        sentence = event.content.split(' ', 1)[1]
         type = text_classifier.predict(sentence)
 
         # If it is a simple sentence and statement, simply answer with pre-curated text.
@@ -53,8 +58,9 @@ async def on_read_message(event) -> None:
 
         # If it is a question, perform query to SerpAPI to perform google search. Give results.
         elif type == "QUESTION":
-            QUERY = event.content.split(' ',1)[1]
-            JSON_LINK = "https://serpapi.com/search.json?engine=google&q=" + QUERY + "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key=" + SERP_API_KEY
+            QUERY = event.content.split(' ', 1)[1]
+            JSON_LINK = "https://serpapi.com/search.json?engine=google&q=" + QUERY + \
+                "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key=" + SERP_API_KEY
             response = requests.get(JSON_LINK)
             data = response.text
             parse_json = json.loads(data)
@@ -63,7 +69,7 @@ async def on_read_message(event) -> None:
                 res = ""
                 TITLE = i['title']
                 LINK = i['link']
-                res = TITLE  + "\n" + LINK
+                res = TITLE + "\n" + LINK
                 await event.message.respond(res)
 
         # IF it is a request for a fact, perform API fetch from FactAPI and give result.
@@ -81,7 +87,7 @@ async def on_read_message(event) -> None:
 
 # Commands
 @bot.command
-@lightbulb.command('ping','Replies Pong!')
+@lightbulb.command('ping', 'Replies Pong!')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping(context):
     """
