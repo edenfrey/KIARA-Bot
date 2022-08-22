@@ -66,7 +66,7 @@ async def ping(context):
     await context.respond('Pong!')
 
 @bot.command
-@lightbulb.command('Search','Search Test')
+@lightbulb.command('search','Search Test')
 @lightbulb.implements(lightbulb.SlashCommand)
 async def ping(context):
     QUERY = "empire state building"
