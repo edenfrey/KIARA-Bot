@@ -14,16 +14,17 @@ KIARA is a Discord chat bot that instead of using typical commands and prefix co
 The way KIARA decides which task it should perform is by performing text classification with the given request and behaves appropriately.
 
 The main functions so far:
+
 1. Reply to your sentence with a fixed reply.
 2. Perform a google search based on your query.
 3. Spit out a random fact.
 
 ## Project Timeline
 
-| Stage                                                  | Status      |
-| ------------------------------------------------------ | ----------- |
-| Planning Stage                                         | COMPLETE    |
-| [Data Collection](https://forms.gle/YXHU4VttZP83t6Dk6) | ONGOING     |
-| Classification Model                                   | COMPLETED     |
+| Stage                                                  | Status    |
+| ------------------------------------------------------ | --------- |
+| Planning Stage                                         | COMPLETE  |
+| [Data Collection](https://forms.gle/YXHU4VttZP83t6Dk6) | ONGOING   |
+| Classification Model                                   | COMPLETED |
 | MODEL-to-BOT Implementation                            | COMPLETED |
-| Deployment                                             | ONGOING |
+| Deployment                                             | ONGOING   |
