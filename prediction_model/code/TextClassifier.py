@@ -145,5 +145,5 @@ class TextClassifier(object):
 
 if __name__ == "__main__":
     classifier = TextClassifier()
-    input = "i like pineapples that are not pine and apples"
+    input = "can i have a fact about colombia?"
     print(classifier.predict(input))

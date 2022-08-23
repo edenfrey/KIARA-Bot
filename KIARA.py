@@ -21,6 +21,7 @@ load_dotenv()
 BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 TEST_GUILD_ID = os.getenv("TEST_GUILD")
 BOT_ID = os.getenv("BOT_ID")
+BOT_TAG = os.getenv("BOT_TAG")
 SERP_API_KEY = os.getenv("SERP_API_KEY")
 # Link for Facts API Fetching
 RANDOM_FACTS_API = "https://uselessfacts.jsph.pl/random.json?language=en"
@@ -40,17 +41,15 @@ async def on_started(event):
     print("KIARA is now online!")
     return
 
-
 @bot.listen(hikari.GuildMessageCreateEvent)
 async def on_read_mention(event) -> None:
     """
     Reads all messages in guild and checks if KIARA is mentioned in the beginning. If it is, runs text classification and performs necessary task.
     """
-    check = "<@" + BOT_ID + ">"
     if event.is_bot or not event.content:  # If message from bot or no content, return.
         return
     # If message starts with "@KIARA" mentioned, perform task.
-    elif event.content.startswith("KIARA"):
+    elif event.content.startswith(BOT_TAG):
         # Remove name and perform classification
         sentence = event.content.split(" ", 1)[1]
         type = text_classifier.predict(sentence)
@@ -89,6 +88,20 @@ async def on_read_mention(event) -> None:
             await event.message.respond(res)
     else:
         return
+
+@bot.listen(hikari.GuildMessageCreateEvent)
+async def on_read_hello(event) -> None:
+    """
+    Reads all messages in guild and checks if KIARA is mentioned in the beginning. If it is, runs text classification and performs necessary task.
+    """
+    if event.is_bot or not event.content:  # If message from bot or no content, return.
+        return
+    elif event.content.startswith("Hi " + BOT_TAG):
+        
+        await event.message.respond("Hello, " + event.author.mention + "! Nice to meet you :)")
+    else:
+        return
+
 
 
 # Commands
