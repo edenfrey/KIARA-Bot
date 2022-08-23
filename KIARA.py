@@ -50,7 +50,7 @@ async def on_read_mention(event) -> None:
     if event.is_bot or not event.content:  # If message from bot or no content, return.
         return
     # If message starts with "@KIARA" mentioned, perform task.
-    elif event.content.startswith(check):
+    elif event.content.startswith("KIARA"):
         # Remove name and perform classification
         sentence = event.content.split(" ", 1)[1]
         type = text_classifier.predict(sentence)
@@ -89,17 +89,6 @@ async def on_read_mention(event) -> None:
             await event.message.respond(res)
     else:
         return
-
-@bot.listen(hikari.GuildMessageCreateEvent)
-async def message_test(event) -> None:
-    """
-    Test function for message listening
-    """
-    check = "<@" + BOT_ID + ">"
-    if event.is_bot or not event.content:  # If message from bot or no content, return.
-        return
-    elif event.content.startswith(check):
-            await event.message.respond("TEST COMPLETE")
 
 
 # Commands
