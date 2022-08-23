@@ -5,7 +5,8 @@ import os
 import hikari
 import lightbulb
 import requests  # API requesting
-from dotenv import load_dotenv  # To retrieve secret environment variables from .env
+from dotenv import \
+    load_dotenv  # To retrieve secret environment variables from .env
 
 from prediction_model.code.TextClassifier import TextClassifier
 
