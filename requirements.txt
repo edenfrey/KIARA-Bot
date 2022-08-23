@@ -22,6 +22,7 @@ multidict==6.0.2
 nltk==3.7
 numpy==1.23.2
 pandas==1.4.3
+pickle-mixin==1.0.2
 python-dateutil==2.8.2
 python-dotenv==0.20.0
 pytz==2022.2.1
@@ -34,5 +35,6 @@ sklearn==0.0
 soupsieve==2.3.2.post1
 threadpoolctl==3.1.0
 tqdm==4.64.0
+typing==3.7.4.3
 urllib3==1.26.11
 yarl==1.8.1
