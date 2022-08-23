@@ -9,6 +9,7 @@ from dotenv import \
     load_dotenv  # To retrieve secret environment variables from .env
 
 from prediction_model.code.TextClassifier import TextClassifier
+
 # Discord Bot Modules
 # API Data Requesting and Processing
 # Import self-made classifier model.
