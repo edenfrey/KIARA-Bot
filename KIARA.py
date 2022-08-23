@@ -20,7 +20,7 @@ text_classifier = TextClassifier()  # Instantiate text classifier
 load_dotenv()
 BOT_TOKEN = os.getenv("DISCORD_BOT_TOKEN")
 TEST_GUILD_ID = os.getenv("TEST_GUILD")
-BOT_ID = os.getenv("BOT_ID_STRING")
+BOT_ID = os.getenv("BOT_ID")
 SERP_API_KEY = os.getenv("SERP_API_KEY")
 # Link for Facts API Fetching
 RANDOM_FACTS_API = "https://uselessfacts.jsph.pl/random.json?language=en"
@@ -42,14 +42,15 @@ async def on_started(event):
 
 
 @bot.listen(hikari.GuildMessageCreateEvent)
-async def on_read_message(event) -> None:
+async def on_read_mention(event) -> None:
     """
     Reads all messages in guild and checks if KIARA is mentioned in the beginning. If it is, runs text classification and performs necessary task.
     """
+    check = "<@" + BOT_ID + ">"
     if event.is_bot or not event.content:  # If message from bot or no content, return.
         return
     # If message starts with "@KIARA" mentioned, perform task.
-    elif event.content.startswith(BOT_ID):
+    elif event.content.startswith(check):
         # Remove name and perform classification
         sentence = event.content.split(" ", 1)[1]
         type = text_classifier.predict(sentence)
@@ -89,6 +90,17 @@ async def on_read_message(event) -> None:
     else:
         return
 
+@bot.listen(hikari.GuildMessageCreateEvent)
+async def message_test(event) -> None:
+    """
+    Test function for message listening
+    """
+    check = "test"
+    if event.is_bot or not event.content:  # If message from bot or no content, return.
+        return
+    elif event.content.startswith(check):
+            await event.message.respond("TEST COMPLETE")
+
 
 # Commands
 @bot.command
@@ -99,6 +111,5 @@ async def ping(context):
     Simple command. If "/ping" is called, reply with Pong!
     """
     await context.respond("Pong!")
-
 
 bot.run()
