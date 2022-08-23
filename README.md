@@ -21,10 +21,10 @@ The main functions so far:
 
 ## Project Timeline
 
-| Stage                                                  | Status      |
-| ------------------------------------------------------ | ----------- |
-| Planning Stage                                         | COMPLETE    |
-| [Data Collection](https://forms.gle/YXHU4VttZP83t6Dk6) | ONGOING     |
-| Classification Model                                   | COMPLETED     |
+| Stage                                                  | Status    |
+| ------------------------------------------------------ | --------- |
+| Planning Stage                                         | COMPLETE  |
+| [Data Collection](https://forms.gle/YXHU4VttZP83t6Dk6) | ONGOING   |
+| Classification Model                                   | COMPLETED |
 | MODEL-to-BOT Implementation                            | COMPLETED |
-| Deployment                                             | ONGOING |
+| Deployment                                             | ONGOING   |
