@@ -5,10 +5,10 @@ import os
 import hikari
 import lightbulb
 import requests  # API requesting
-from dotenv import \
-    load_dotenv  # To retrieve secret environment variables from .env
+from dotenv import load_dotenv  # To retrieve secret environment variables from .env
 
 from prediction_model.code.TextClassifier import TextClassifier
+
 # Discord Bot Modules
 # API Data Requesting and Processing
 # Import self-made classifier model.
@@ -56,15 +56,18 @@ async def on_read_message(event) -> None:
         # If it is a simple sentence and statement, simply answer with pre-curated text.
         if type == "SENTENCE":
             await event.message.respond(
-                "Cool! I can't really understand fully yet but I'm learning!")
+                "Cool! I can't really understand fully yet but I'm learning!"
+            )
 
         # If it is a question, perform query to SerpAPI to perform google search. Give results.
         elif type == "QUESTION":
             QUERY = event.content.split(" ", 1)[1]
             JSON_LINK = (
-                "https://serpapi.com/search.json?engine=google&q=" + QUERY +
-                "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key="
-                + SERP_API_KEY)
+                "https://serpapi.com/search.json?engine=google&q="
+                + QUERY
+                + "&google_domain=google.com&gl=my&hl=en&start=1&num=5&device=mobile&api_key="
+                + SERP_API_KEY
+            )
             response = requests.get(JSON_LINK)
             data = response.text
             parse_json = json.loads(data)
