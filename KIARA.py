@@ -97,7 +97,8 @@ async def on_read_hello(event) -> None:
     if event.is_bot or not event.content:  # If message from bot or no content, return.
         return
     elif event.content.startswith("Hi " + BOT_TAG):
-        
+        await event.message.respond("Hello, " + event.author.mention + "! Nice to meet you :)")
+    elif event.content.startswith("Hi KIARA"):
         await event.message.respond("Hello, " + event.author.mention + "! Nice to meet you :)")
     else:
         return
