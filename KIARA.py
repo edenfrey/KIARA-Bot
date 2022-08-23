@@ -95,7 +95,7 @@ async def message_test(event) -> None:
     """
     Test function for message listening
     """
-    check = "<@" + BOT_ID + "> test"
+    check = "<@" + BOT_ID + ">"
     if event.is_bot or not event.content:  # If message from bot or no content, return.
         return
     elif event.content.startswith(check):
