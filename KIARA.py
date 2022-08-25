@@ -49,7 +49,7 @@ async def on_read_mention(event) -> None:
     if event.is_bot or not event.content:  # If message from bot or no content, return.
         return
     # If message starts with "@KIARA" mentioned, perform task.
-    elif event.content.startswith(BOT_TAG):
+    elif event.content.startswith("KIARA"):
         # Remove name and perform classification
         sentence = event.content.split(" ", 1)[1]
         type = text_classifier.predict(sentence)
@@ -102,8 +102,6 @@ async def on_read_hello(event) -> None:
         await event.message.respond("Hello, " + event.author.mention + "! Nice to meet you :)")
     else:
         return
-
-
 
 # Commands
 @bot.command
