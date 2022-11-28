@@ -8,6 +8,7 @@ import os
 
 import discord
 from dotenv import load_dotenv
+
 # Import Libraries
 
 # Extract Private Credentials
