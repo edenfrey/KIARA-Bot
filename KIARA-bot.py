@@ -37,8 +37,6 @@ client.run(BOT_TOKEN)
 
 # Bot Passive Behavior
 
-
 # Bot Active Behavior
-
 
 # Bot Commanded Behavior
