@@ -6,9 +6,9 @@ Description: This is the base code that creates an instance of the bot which can
 """
 import os
 
-# Import Libraries
 import discord
 from dotenv import load_dotenv
+# Import Libraries
 
 # Extract Private Credentials
 load_dotenv()
