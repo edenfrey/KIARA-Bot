@@ -4,9 +4,10 @@ Author: Amir Adrian Amir Hamzah
 Description: This is the base code that creates an instance of the bot which can be activated and hosted locally to bring the respective bot online
 
 """
+import os
+
 # Import Libraries
 import discord
-import os
 from dotenv import load_dotenv
 
 # Extract Private Credentials
